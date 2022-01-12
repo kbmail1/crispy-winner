@@ -1,2 +1,0 @@
-# crispy-winner
-angular client
