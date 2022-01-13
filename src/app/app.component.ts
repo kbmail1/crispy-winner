@@ -9,6 +9,8 @@ import './app.component.scss'
 export class AppComponent implements OnInit {
   title = 'crispy-winner';
 
+  isAuthenticated: boolean = false
+
   ngOnInit() {
   }
 }

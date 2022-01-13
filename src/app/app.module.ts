@@ -11,6 +11,9 @@ import { HangmanComponent } from './hangman/hangman.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { LandingComponent } from './landing/landing.component';
 import { ActivatedRouteComponent } from './activated-route/activated-route.component';
+import { LoginComponent } from './login/login.component';
+
+import AuthService from './services/auth.service'
 
 @NgModule({
   declarations: [
@@ -21,14 +24,15 @@ import { ActivatedRouteComponent } from './activated-route/activated-route.compo
     HangmanComponent,
     PageNotFoundComponent,
     LandingComponent,
-    ActivatedRouteComponent
+    ActivatedRouteComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
   ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

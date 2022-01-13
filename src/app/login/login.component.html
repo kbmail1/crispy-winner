@@ -1,0 +1,21 @@
+<p>login works!</p>
+
+  {{authState | json}}
+<form>
+<div class="form-group">
+  <label for="loginId">Login Id</label>
+  <input type="text" class="form-control" id="loginId"
+    required
+    [(ngModel)]="authState!.loginId" name="loginId">
+    TODO: remove this: {{authState?.loginId}}
+</div>
+<div class="form-group">
+  <label for="password">Password</label>
+  <input type="text" class="form-control" id="password"
+    required
+    [(ngModel)]="authState!.password" name="password">
+    TODO: remove this: {{authState?.password}}
+</div>
+<div></div>
+<button (click)="onLogin()">Login</button>
+</form>
