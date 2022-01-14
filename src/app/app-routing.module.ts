@@ -12,14 +12,14 @@ import { LoginComponent } from './login/login.component';
 import { AuthGuard } from './services/auth.guard';
 
 const routes: Routes = [
-  { path: 'home', component: LandingComponent },
+  { path: AppComponent.homeRoutePath, component: LandingComponent },
   { path: 'bezier', component: BezierComponent, canActivate: [AuthGuard]},
   { path: 'crossword', component: CrosswordComponent },
   { path: 'dict', component: DictionaryComponent },
   { path: 'hangman', component: HangmanComponent },
   { path: 'activated', component: ActivatedRouteComponent },
   { path: 'login', component: LoginComponent },
-  { path: '', redirectTo:'home', pathMatch: 'full'},
+  { path: '', redirectTo: AppComponent.homeRoutePath, pathMatch: 'full'},
   { path: '**', component:  PageNotFoundComponent },
 ]
 

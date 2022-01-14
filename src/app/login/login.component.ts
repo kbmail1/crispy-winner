@@ -1,43 +1,55 @@
-import { Component, Input, OnInit } from '@angular/core'
+import { AppComponent } from '../app.component'
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core'
 import { ActivatedRouteSnapshot, Router, RouterStateSnapshot } from '@angular/router'
 import { isJSDocAugmentsTag } from 'typescript'
-import AuthService, { AuthState } from '../services/auth.service'
+import AuthService, { AuthState, } from '../services/auth.service'
+import { Subscriber } from 'rxjs'
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
 
-  authState: AuthState | null = null
   url: string = ''
+  homeRoutePath = 'home'
+  authServiceSubscriber: Subscriber<AuthState> | null = null
+  localAuthState: AuthState;
 
   constructor(
     private authService: AuthService,
     private router: Router,
   ) {
-    this.authState = this.authService.getAuthState()
+    this.localAuthState = this.authService.getAuthState()
   }
 
-  onLogin() {
+  ngOnInit = (): void => {
+  }
 
-    // NOTE: fields are already set throguh [(ngModel)] in html
-    // encrypt password here. and explicitly change password field to null
-    // Do the verification / JWT etc. and if all ok, then:
-    if ((this.authState?.loginId === 'kundan') && (this.authState?.password === 'kundan123')) {
-      this.authState!.isAuthenticated = true
-      this.authService.setAuthState(Object.assign({}, this.authState))
+  getCurrentAuthState = () => {
+    return this.authService.getAuthState()
+  }
 
-      console.log(`login. 1.Success: authState: ${JSON.stringify(this.authState, null, 2)}`)
-      console.log(`Login: 2.Success: redirecting back to: ${this.authService.redirectUrl}`)
-      this.router.navigate([this.authService.redirectUrl])
-
-
+  onLogin = () => {
+    let valid = false
+    if ((this.localAuthState?.loginId === 'kundan') && (this.localAuthState?.password === 'kundan123')) {
+      // a11y
+      valid = true
     } else {
-      this.authState!.isAuthenticated = false // asssert to make sure.
-      this.authService.setAuthState(Object.assign({}, this.authState))
+      valid = false
+    }
+
+    // a11y - do Ally stuff.. then take next actions.
+
+    if (valid === true) {
+      this.localAuthState!.isAuthenticated = true
+      this.authService.setAuthState(Object.assign({}, this.localAuthState))
+      this.router.navigateByUrl(this.authService.redirectUrl)
+    } else {
+      this.localAuthState!.isAuthenticated = false // asssert to make sure.
+      // go nowhere.
+      this.authService.setAuthState(Object.assign({}, this.localAuthState))
     }
   }
-
 }

@@ -1,3 +1,4 @@
+import { identifierName } from '@angular/compiler';
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { Subject, Observable, BehaviorSubject } from 'rxjs';
@@ -18,16 +19,18 @@ class AuthService {
   constructor() { }
 
   // maybe private with get/set for other (log, etc housekeeping)?
-  public redirectUrl : string = ''
+  redirectUrl : string = ''
 
-  authState: AuthState = {
-    isAuthenticated: false,
-    // === these should not be null.
-    // used in template expressions which do not accept nulls.
-    // asserting '!' will compile, and runtime error when found these nulls.
-    loginId: '',
-    password: '',
+  static readonly dfltIsAuthenticated = false
+  static readonly dfltLoginId = ''
+  static readonly dfltPassword = ''
+  static readonly defaultNoLoginAuthState: AuthState = {
+    isAuthenticated: AuthService.dfltIsAuthenticated,
+    loginId: AuthService.dfltLoginId,
+    password: AuthService.dfltPassword,
   }
+
+  public authState: AuthState = AuthService.defaultNoLoginAuthState
 
   private authSubject = new BehaviorSubject<AuthState>(this.authState)
   public authObservable  = this.authSubject.asObservable()
