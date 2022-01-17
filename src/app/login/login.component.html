@@ -1,17 +1,15 @@
   <h1>login</h1>
-  <form>
-    <div class="form-group">
+    <div>
       <label id='labelLoginId' for="loginId">Login Id</label>
-      <input type="text" class="form-control" id="loginId" required [(ngModel)]="localAuthState!.loginId" name="loginId"
+      <input type="text" id="loginId" required [(ngModel)]="localAuthState!.loginId" name="loginId"
         aria-labelledby="labelLoginId"
       >
     </div>
-    <div class="form-group">
+    <div>
       <label id="labelPassword" for="password">Password</label>
-      <input type="text" class="form-control" id="password" required [(ngModel)]="localAuthState!.password" name="password"
+      <input type="text" id="password" required [(ngModel)]="localAuthState!.password" name="password"
         aria-labelledby="labelPassword"
       >
     </div>
     <div></div>
     <button class='login' (click)="onLogin()">Login</button>
-  </form>

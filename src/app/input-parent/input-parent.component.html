@@ -1,0 +1,7 @@
+<p>input-parent works!</p>
+
+<button type='button' (click)='sendMsgToChild()'>Send Msg to child</button>
+
+<hr>
+<br>Child component:
+<app-input-child [messageFromParent]="message"></app-input-child>

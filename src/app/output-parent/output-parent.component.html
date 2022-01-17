@@ -1,0 +1,11 @@
+<p>
+  output-parent works!
+  <br>
+  Received from child: <h2>{{message}}</h2>
+<br>
+
+  Invoking my child output-child
+<br>--------------------------------
+<h2>child</h2>
+<app-output-child (messageEvent)="displayMessage($event)"></app-output-child>
+  <h2>{{message}}</h2>
