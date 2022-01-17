@@ -23,8 +23,10 @@ import { ViewchildChildComponent } from './viewchild-child/viewchild-child.compo
 import { ViewchildParentComponent } from './viewchild-parent/viewchild-parent.component';
 import { ViewchildrenParentComponent } from './viewchildren-parent/viewchildren-parent.component';
 import { ViewchildrenChildComponent } from './viewchildren-child/viewchildren-child.component';
-import { BehaviorComponent } from './behavior/behavior.component';
 import { RestComponent } from './rest/rest.component';
+import { SendBehaviorComponent } from './send-behavior/send-behavior.component';
+import { GetBehaviorComponent } from './get-behavior/get-behavior.component';
+import { BehaviorComponent } from './behavior/behavior.component';
 
 @NgModule({
   declarations: [
@@ -45,8 +47,10 @@ import { RestComponent } from './rest/rest.component';
     ViewchildParentComponent,
     ViewchildrenParentComponent,
     ViewchildrenChildComponent,
-    BehaviorComponent,
     RestComponent,
+    SendBehaviorComponent,
+    GetBehaviorComponent,
+    BehaviorComponent,
   ],
   imports: [
     BrowserModule,
