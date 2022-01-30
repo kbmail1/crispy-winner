@@ -1,48 +1,69 @@
-<div style="font-size: '0.5rem'">
-showEnterCodeForm: {{ this.showEnterCodeForm }}<br>
-showLoginForm: {{ this.showLoginForm }}<br>
-showSignupForm: {{ this.showSignupForm }}<br>
-showSignupForm:  {{ this.accountCreated }}<br>
-doShowNoForm:  {{ this.accountCreated }}<br>
+<div style="font-size: '0.8rem'">
+  showEnterCodeForm: {{ this.showEnterCodeForm }}<br>
+  showLoginForm: {{ this.showLoginForm }}<br>
+  showSignupForm: {{ this.showSignupForm }}<br>
+  showSignupForm: {{ this.accountCreated }}<br>
+  doShowNoForm: {{ this.doShowNoForm() }}<br>
+  email: {{ this.email }}<br>
+  code: {{ this.code }}<br>
+  <!-- emailx: {{ this.signupCode.nativeElement.value}} -->
 </div>
+
+<p>
+<div *ngIf="this.errorMsg.length > 0" style="color: #dd9999">
+  {{ this.errorMsg}}
+</div>
+
+<ng-template #HomePageMainSection >
+  <button id='submit-show-signup-form' class="btn btn-primary btn-block" (click)="handleShowSignupForm()">Sign
+    up</button>
+  &nbsp;&nbsp;&nbsp;&nbsp;
+  <button id='submit-show-login-form' class="btn btn-primary btn-block" (click)="handleShowLoginForm()">Log in</button>
+  <div style='font-size:1.3rem'>
+    Home page
+  </div>
+</ng-template>
+
 
 <div *ngIf="loggedIn">
   Welcome back {{email}}
+  <button id='submit-logout' class="btn btn-primary btn-block" (click)="handleLogout()">Log out</button>
 </div>
-<div *ngIf="doShowNoForm()">
-      <button id='submit-show-signup-form' class="btn btn-primary btn-block" (click)="handleShowSignupForm()">Sign up</button>
-      &nbsp;&nbsp;&nbsp;&nbsp;
-      <button id='submit-show-login-form' class="btn btn-primary btn-block" (click)="handleShowLoginForm()">Log in</button>
 
-    <div style='font-size:2rem'>
-      Introductory content
-    </div>
-</div>
+<ng-template [ngTemplateOutlet]="HomePageMainSection" *ngIf="doShowNoForm()">
+</ng-template>
 
 <div *ngIf="accountCreated">
+  <!-- move this to top banner message and present home page with login button on right corner -->
   <h3>Yay, your account is created</h3>
+  <!-- OK to show login AND signup (if want to signup as someone else) -->
+  <div *ngIf="doShowNoForm()">
+    <ng-template [ngTemplateOutlet]="HomePageMainSection" ="doShowNoForm()">
+    </ng-template>
+</div>
+
 </div>
 
 <!-- Confirm Email by entering code during Signup process -->
 <div *ngIf="showEnterCodeForm">
-  <form novalidate>
     <div class="form-group">
       <label>Enter Emailed Code</label>
-      <input style="font-size: 2rem" [value]="code" type="text" id="signup-code" maxlength="5" placeholder="XXXX" />
+      <input #signupCode style="font-size: 2rem" [(ngModel)]="code" type="text" id="signup-code" maxlength="5"
+        placeholder="XXXX" />
     </div>
     <div class="form-group">
-      <button id='submit-code-form' class="btn btn-secondary btn-block" (click)="handleValidateSignupCode()">Create account</button>
+      <button id='submit-code-form' class="btn btn-secondary btn-block" (click)="handleValidateSignupCode()">Create
+        account</button>
     </div>
-  </form>
 </div>
 
 <!-- Login Form -->
 <div *ngIf="showLoginForm">
   login-form<br>
-  <form novalidate>
+
     <div class="form-group">
       <label>Email</label>
-      <input type="email" id="login-email" [value]="email" class="form-control">
+      <input type="email" id="login-email" [(ngModel)]="email" class="form-control">
     </div>
 
     <div class="form-group">
@@ -53,18 +74,15 @@ doShowNoForm:  {{ this.accountCreated }}<br>
     <div class="form-group">
       <button id='submit-login-form' class="btn btn-secondary btn-block" (click)="handleLogin()">Login</button>
     </div>
-  </form>
 </div>
 
 <!-- Signup Form -->
 <div *ngIf="showSignupForm">
-  <form novalidate>
     <div class="form-group">
       <label>Email</label>
-      <input type="email" [value]="email" id="signup-email" class="form-control">
+      <input type="email" [(ngModel)]="email" id="signup-email" class="form-control">
     </div>
     <button id='submit-signup-form' class='btn btn-primary' (click)="handleSignUp()" class="sign-up"> Sign up </button>
-  </form>
 </div>
 <br>
 footer
