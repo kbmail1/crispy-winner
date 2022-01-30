@@ -16,6 +16,7 @@ import { ViewchildParentComponent } from './viewchild-parent/viewchild-parent.co
 import { ViewchildrenParentComponent } from './viewchildren-parent/viewchildren-parent.component';
 import { RestComponent } from './rest/rest.component';
 import { BehaviorComponent } from './behavior/behavior.component';
+import { ChatComponent } from './chat/chat.component';
 
 const routes: Routes = [
   { path: AppComponent.homeRoutePath, component: LandingComponent },
@@ -29,6 +30,7 @@ const routes: Routes = [
   { path: 'viewchildren', component: ViewchildrenParentComponent },
   { path: 'rest', component: RestComponent },
   { path: 'behavior', component: BehaviorComponent },
+  { path: 'chat', component: ChatComponent },
   { path: 'activated', component: ActivatedRouteComponent },
   { path: 'login', component: LoginComponent },
   { path: '', redirectTo: AppComponent.homeRoutePath, pathMatch: 'full'},

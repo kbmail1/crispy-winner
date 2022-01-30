@@ -27,6 +27,7 @@ import { RestComponent } from './rest/rest.component';
 import { SendBehaviorComponent } from './send-behavior/send-behavior.component';
 import { GetBehaviorComponent } from './get-behavior/get-behavior.component';
 import { BehaviorComponent } from './behavior/behavior.component';
+import { ChatComponent } from './chat/chat.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +52,7 @@ import { BehaviorComponent } from './behavior/behavior.component';
     SendBehaviorComponent,
     GetBehaviorComponent,
     BehaviorComponent,
+    ChatComponent,
   ],
   imports: [
     BrowserModule,

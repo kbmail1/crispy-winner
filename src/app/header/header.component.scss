@@ -1,0 +1,32 @@
+.header-wrapper {
+  height: 7rem;
+  background-color:rgb(16, 97, 100);
+  border: 1px solid red;
+  width: 100%;
+  position: sticky;
+  top: 0;
+  left: 0;
+
+  h1 {
+    color: white !important;
+    position: relative;
+    top: -10px;
+    left: 10px;
+  }
+
+  ul {
+    list-style-type: none;
+    display: flex;
+    justify-content: space-around;
+    align-content: center;
+    margin-left: -25px;
+    position: relative;
+    bottom: 0rem;
+    li, a {
+      color: white;
+    }
+    a, a:hover, a:visited {
+      text-decoration: none;
+    }
+  }
+}

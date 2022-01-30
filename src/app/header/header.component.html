@@ -1,0 +1,21 @@
+<div class="header-wrapper">
+    <span class='h1-superimpose'>
+      <h1 class='h1-position'>Meander</h1>
+    </span>
+    <ul class="router-links">
+      <li><a routerLink="/bezier">Bezier</a></li>
+      <li><a routerLink="/crossword" routerLinkActive="active">Xword</a></li>
+      <li><a routerLink="/hangman" routerLinkActive="active">Hangman</a></li>
+      <li><a routerLink="/dict" routerLinkActive="active">Dict</a></li>
+      <li><a routerLink="/testoutput" routerLinkActive="active">@Out</a></li>
+      <li><a routerLink="/testinput" routerLinkActive="active">@In</a></li>
+      <li><a routerLink="/viewchild" routerLinkActive="active">View</a></li>
+      <li><a routerLink="/viewchildren" routerLinkActive="active">Views</a></li>
+      <li><a routerLink="/rest" routerLinkActive="active">Rest</a></li>
+      <li><a routerLink="/behavior" routerLinkActive="active">Behave</a></li>
+
+      <li *ngIf="!authService.getAuthState().isAuthenticated"><a routerLink="/login" routerLinkActive="active">Login</a></li>
+      <li *ngIf="authService.getAuthState().isAuthenticated"><a routerLink="/login" routerLinkActive="active">Logout</a></li>
+    </ul>
+    auth state: {{authService.authState.isAuthenticated}}
+</div>

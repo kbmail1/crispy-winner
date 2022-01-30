@@ -3,8 +3,8 @@
 puzzle {{size}} x {{size}}
 <div class="grid-container">
   <!-- n is number of rows.  total cells are (n by n) -->
-  <ng-container *ngFor="let item of xyToCantor | keyvalue">
-    <div class="grid-item" [id]="item.key">{{item.key}} - {{item.value}}</div>
+  <ng-container *ngFor="let item of rowcolToCantor | keyvalue">
+    <div class="grid-item" (click)="onClick($event)" [id]="item.key">{{item.key}} - {{item.value}}</div>
   </ng-container>
 </div>
 

@@ -1,35 +1,246 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import MathService from '../services/math.service';
-
 @Component({
   selector: 'app-crossword',
   templateUrl: './crossword.component.html',
   styleUrls: ['./crossword.component.scss']
 })
 export class CrosswordComponent implements OnInit {
+  remaining: string[] = []
+  failed: string[] = []
+  succeeded: string[] = []
 
-  public static readonly DefaultSize: number = 3
-  size: number = CrosswordComponent.DefaultSize
-  // key is x.y (float) and value is cantor
-  xyToCantor: { [key: string]: number } = {}
+  word: string = ''
+  size: number = 6
+  // key is row.col (float) and value is cantor
+  rowcolToCantor: { [key: string]: number } = {}
 
   constructor(
-    @Inject(MathService) public math: MathService) {
-
+    @Inject(MathService) public math: MathService,
+  ) {
+    // create empty matrix - use cantor numbers for x and y
     console.log(`size: ${this.size}`)
-      for (let x = 0; x < this.size; x++) {
-    for (let y = 0; y < this.size; y++) {
-        console.log(`x, y: ${x}, ${y}`)
-        const xy: string = '' + x + '.' + y
-        this.xyToCantor[xy] = math.cantor(x, y)
+    for (let row = 0; row < this.size; row++) {
+      for (let col = 0; col < this.size; col++) {
+        console.log(`row, col: ${row}, ${col}`)
+        const rowcol: string = '' + row + '.' + col
+        this.rowcolToCantor[rowcol] = math.cantor(row, col)
       }
     }
-
-    for (const k in this.xyToCantor) {
-      console.log(`key: ${k} - ${this.xyToCantor[k]}`)
+    for (const k in this.rowcolToCantor) {
+      console.log(`key: ${k} - ${this.rowcolToCantor[k]}`)
     }
   }
 
+  onClick(event: Event) {
+    console.log(event)
+    let elementId: string = (event.target as Element).id;
+    console.log(elementId)
+  }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+    console.log('tried w')
+  }
+
+  words: string[] = [
+    'creaze',
+    'create',
+    'creasy',
+    'crease',
+    'creant',
+    'creamy',
+    'creams',
+    'creaky',
+    'creaks',
+    'creagh',
+    'creach',
+    'crazes',
+    'crazed',
+    'crayon',
+    'crayer',
+    'crawly',
+    'crawls',
+    'craves',
+    'craver',
+    'craven',
+    'craved',
+    'cravat',
+    'craton',
+    'crates',
+    'crater',
+    'crated',
+    'cratch',
+    'crasis',
+    'crases',
+    'crapwa',
+    'crappy',
+    'crappo',
+    'crapon',
+    'crapes',
+    'craped',
+    'crants',
+    'cranny',
+    'cranky',
+    'cranks',
+    'cranic',
+    'crania',
+    'craney',
+    'cranet',
+    'cranes',
+    'craner',
+    'craned',
+    'cranch',
+    'crance',
+    'crampy',
+    'cramps',
+    'cramel',
+    'crambo',
+    'crambe',
+    'crakow',
+    'crakes',
+    'craker',
+    'craked',
+    'craggy',
+    'crafty',
+    'crafts',
+    'cradle',
+    'cradge',
+    'craddy',
+    'cracky',
+    'cracks',
+    'cracca',
+    'crabut',
+    'crabit',
+    'craber',
+    'crabby',
+    'craals',
+    'cozzes',
+    'cozing',
+    'cozily',
+    'cozies',
+    'cozier',
+    'cozeys',
+    'cozens',
+    'coyure',
+    'coypus',
+    'coypou',
+    'coyote',
+    'coynye',
+    'coyish',
+    'coying',
+    'coyest',
+    'coydog',
+    'coxite',
+    'coxing',
+    'coxier',
+    'cowson',
+    'cowrie',
+    'cowpox',
+    'cowper',
+    'cowpen',
+    'cowpea',
+    'cowpat',
+    'cowmen',
+    'cowman',
+    'cowled',
+    'cowish',
+    'cowing',
+    'cowier',
+    'cowers',
+    'coween',
+    'cowdie',
+    'cowboy',
+    'coward',
+    'cowage',
+    'covite',
+    'coving',
+    'covine',
+    'covido',
+    'coveys',
+    'covets',
+    'covert',
+    'covers',
+    'covent',
+    'covens',
+    'covary',
+    'covado',
+    'couxio',
+    'couxia',
+    'coutil',
+    'couthy',
+    'couths',
+    'couthe',
+    'coutet',
+    'couter',
+    'coutel',
+    'cousin',
+    'ourty',
+    'ourts',
+    'oursy',
+    'ourse',
+    'ouril',
+    'ourie',
+    'ourge',
+    'ourbe',
+    'ourap',
+    'oupon',
+    'ouple',
+    'oupes',
+    'ouper',
+    'upee',
+    'ouped',
+    'ounty',
+    'ounts',
+    'oulis',
+    'oulie',
+    'oulee',
+    'ouldn',
+    'oughs',
+    'ougar',
+    'oudee',
+    'ouchy',
+    'ouche',
+    'oucal',
+    'otype',
+    'otyle',
+    'otyla',
+    'otwin',
+    'otwal',
+    'otula',
+    'otuit',
+    'ottus',
+    'otton',
+    'ottid',
+    'otter',
+    'otted',
+    'ottas',
+    'ottar',
+    'ottae',
+    'tset',
+    'toxo',
+    'toro',
+    'toin',
+    'tman',
+    'tise',
+    'ting',
+    'tice',
+    'thon',
+    'tham',
+    'tery',
+    'tele',
+    'teen',
+    'teau',
+    'tans',
+    'stly',
+    'ster',
+    'sted',
+    'star',
+    'stal',
+    'stae',
+    'ssie',
+    'ssid',
+    'ssic',
+    'sset',
+    'ssas',
+  ]
 }
