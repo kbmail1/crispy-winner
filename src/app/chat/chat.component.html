@@ -6,6 +6,9 @@ showSignupForm:  {{ this.accountCreated }}<br>
 doShowNoForm:  {{ this.accountCreated }}<br>
 </div>
 
+<div *ngIf="loggedIn">
+  Welcome back {{email}}
+</div>
 <div *ngIf="doShowNoForm()">
       <button id='submit-show-signup-form' class="btn btn-primary btn-block" (click)="handleShowSignupForm()">Sign up</button>
       &nbsp;&nbsp;&nbsp;&nbsp;
