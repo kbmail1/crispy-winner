@@ -158,4 +158,50 @@ export class ChatComponent implements OnInit, AfterContentInit {
     this.accountCreated = false
   }
 
+
+
+  handleMongoCreate = () => {
+    axios.post('https://localhost:8888/mongo/create', {
+      email: this.email,
+      password: 'createpass',
+      chatlets: [],
+      friends: [],
+    })
+      .then(() => {
+        console.log('sent mongo create POST request to server')
+      })
+  }
+
+  handleMongoRead = () => {
+    axios.post('https://localhost:8888/mongo/read', {
+      email: 'kundan.bmail1@gmail.com',
+    })
+      .then(() => {
+        console.log('sent mongo read POST request to server')
+      })
+  }
+
+  handleMongoUpdate = () => {
+    axios.post('https://localhost:8888/mongo/update', {
+      user: {
+        email: 'a@b.com',
+        password: 'kundan_updated_pass',
+        chatlets: [],
+        friends: [],
+      }
+    })
+      .then(() => {
+        console.log('sent mongo create POST request to server')
+      })
+  }
+
+  handleMongoRemove = () => {
+    axios.post('https://localhost:8888/mongo/remove', {
+      email: 'kundan.bmail1@gmail.com'
+    })
+      .then(() => {
+        console.log('sent mongo create POST request to server')
+      })
+  }
+
 }
