@@ -3,6 +3,11 @@
   password: {{ this.password }}
 </div>
 
+<button id='submit-signup-form' (click)="handleSignupClick($event)" class="btn btn-secondary">
+  Sign up
+</button>
+<p></p>
+
 <div>
   <label for="email">Email</label>
   <input id="email" name="email" [(ngModel)]="email" type="email">

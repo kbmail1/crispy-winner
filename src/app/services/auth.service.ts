@@ -11,6 +11,11 @@ export interface AuthState {
   // add AA related details...
 }
 
+export const defaultNoLoginAuthState: AuthState = {
+    isAuthenticated: false,
+    loginId: '',
+    password: ''
+  }
 @Injectable({
   providedIn: 'root'
 })
@@ -24,13 +29,8 @@ class AuthService {
   static readonly dfltIsAuthenticated = false
   static readonly dfltLoginId = ''
   static readonly dfltPassword = ''
-  static readonly defaultNoLoginAuthState: AuthState = {
-    isAuthenticated: AuthService.dfltIsAuthenticated,
-    loginId: AuthService.dfltLoginId,
-    password: AuthService.dfltPassword,
-  }
 
-  public authState: AuthState = AuthService.defaultNoLoginAuthState
+  public authState: AuthState = defaultNoLoginAuthState
 
   private authSubject = new BehaviorSubject<AuthState>(this.authState)
   public authObservable  = this.authSubject.asObservable()

@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { UserService } from '../user-service/user-service'
 import { HttpClient } from '@angular/common/http';
-import { bcrypt } from 'bcrypt'
+import * as bcrypt from 'bcrypt'
 
 /*
  * Output status (true or false) or signup success
@@ -12,10 +12,9 @@ import { bcrypt } from 'bcrypt'
  */
 
 export interface SignupStatus {
-  email: string,
-  success: boolean,
+    email: string,
+    success: boolean,
 }
-
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
@@ -23,7 +22,8 @@ export interface SignupStatus {
 })
 export class SignupComponent {
 
-  @Output() signupEmitter = new EventEmitter()
+  @Output() signupEmitter = new EventEmitter<SignupStatus>()
+  @Output() actionEmitter = new EventEmitter<string>()
   signupStatus: any = null
 
   getEmail: boolean = false
@@ -59,10 +59,9 @@ export class SignupComponent {
 
     console.log(`this.success ${ success }`)
     this.signupEmitter.emit({
-      email: this.email,
-      success,
+        email: this.email,
+        success,
     })
-
   }
 
   // 4 digit code.
@@ -87,6 +86,10 @@ export class SignupComponent {
       error: (err) => { console.error('handleEmail: response error: ', err) },
       complete: () => { console.info('handleEmail: completed response handling') },
     })
+  }
+
+  handleLogin(e: Event) {
+    this.actionEmitter.emit('login')
   }
 
   getSession = () => {

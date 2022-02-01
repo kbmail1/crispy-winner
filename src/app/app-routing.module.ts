@@ -7,7 +7,6 @@ import { DictionaryComponent } from './dictionary/dictionary.component'
 import { HangmanComponent } from './hangman/hangman.component'
 import { LandingComponent } from './landing/landing.component'
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component'
-// import { LoginComponent } from './login/login.component.tsa';
 import { AuthGuard } from './services/auth.guard';
 import { OutputParentComponent } from './output-parent/output-parent.component';
 import { InputParentComponent } from './input-parent/input-parent.component';
@@ -16,6 +15,7 @@ import { ViewchildrenParentComponent } from './viewchildren-parent/viewchildren-
 import { RestComponent } from './rest/rest.component';
 import { BehaviorComponent } from './behavior/behavior.component';
 import { UserMgmtComponent } from './user-mgmt/user-mgmt.component';
+import { LoginComponent } from './user-mgmt/login/login.component'
 
 const routes: Routes = [
   {
@@ -32,9 +32,10 @@ const routes: Routes = [
       { path: 'viewchildren', component: ViewchildrenParentComponent },
       { path: 'rest', component: RestComponent },
       { path: 'behavior', component: BehaviorComponent },
-      { path: 'usermgmt', component: UserMgmtComponent },
     ]
   },
+  { path: 'usermgmt', component: UserMgmtComponent },
+  { path: 'login', component: LoginComponent, pathMatch: 'full'},
   { path: '', redirectTo: AppComponent.homeRoutePath, pathMatch: 'full'},
   { path: '**', component:  PageNotFoundComponent },
 ]

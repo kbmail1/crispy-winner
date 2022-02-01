@@ -2,6 +2,14 @@
   email: {{this.email}}<br>
   sessionStoredEmail: {{ this.getSession() }}<br>
 </div>
+  <button
+    id='submit-signup-form'
+    class='btn btn-primary'
+    (click)="handleLogin($event)"
+  >
+    Login
+  </button>
+
 
 <!-- Signup Form -->
 <div *ngIf="getEmail">

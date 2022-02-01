@@ -33,7 +33,7 @@ export class AuthGuard implements CanActivate {
       return true; // to login page.
     }
     console.log('auth-guarding - NOT Logged in: Redirecting to login')
-    this.router.navigate(['/login'])
+    this.router.navigate(['/usermgmt'])
     return false
   }
 }

@@ -1,12 +1,14 @@
 import { Component, OnInit } from '@angular/core'
 import { SignupComponent, SignupStatus } from './signup/signup.component'
-import { LoginComponent } from './login/login.component'
+import { LoginComponent, LoginStatus } from './login/login.component'
 import { AuthHomeComponent } from './auth-home/auth-home.component'
+import AuthService, { defaultNoLoginAuthState } from '../services/auth.service'
 
 // mutually exclusive vars - only one true.
 const DefaultState = {
   'signup': false,
   'login': false,
+  'logout': false,
   'home': false,
 }
 
@@ -28,13 +30,16 @@ export class UserMgmtComponent implements OnInit {
   accountCreated: boolean = false
   msgToDisplay: string = ''
 
-  constructor() {}
+  constructor(
+    private authService: AuthService
+  ) { }
 
   ngOnInit() {
     // this._reload = true
     this.state = {
       signup: false,
       login: false,
+      logout: false,
       home: true,
     }
   }
@@ -48,32 +53,37 @@ export class UserMgmtComponent implements OnInit {
     // this._reload = true
   }
 
-  handleSignupStatus = (e: any) => {
+  handleSignupStatus = (e: SignupStatus) => {
     console.log('user-mgmt-component: handleSignupStatus: ', e)
-    let status = e as SignupStatus
-
-    if (status.success) {
-      this.msgToDisplay = `Account ${status.email} successfully created.`
-    } else {
-      this.msgToDisplay = `Failed to create Account ${status.email}.`
-    }
-    this.setState('home', true)
+      if (e.success) {
+        this.msgToDisplay = `Account ${e.email} successfully created.`
+      } else {
+        this.msgToDisplay = `Failed to create Account ${e.email}.`
+      }
+      this.setState('home', true)
   }
 
-  handleLoginStatus = (e: any) => {
-    // for now assuming success
-    if (e.success) {
-      this.msgToDisplay = `Welcome ${e.email}`
-    }
-    this.setState('home', true)
+  handleLoginStatus = (e: LoginStatus) => {
+      if (e.success) {
+        this.msgToDisplay = `Welcome ${e.email}`
+        this.setState('home', true)
+      }
   }
 
-  handleActionRequest = (e: String) => {
+  handleActionRequest = (e: string) => {
     console.log('user-mgmt: handleActionRequest: e: ', e)
-    if (e === 'signup') {
-      this.setState('signup', true)
-    } else if ('login') {
-      this.setState('login', true)
-    }
+      if (e === 'signup') {
+        this.msgToDisplay = 'Create a new account with a new Email address'
+        this.setState('signup', true)
+      } else if (e === 'login') {
+        this.msgToDisplay = ''
+        this.setState('login', true)
+      } else if (e === 'logout') {
+        this.authService.setAuthState({
+          ...defaultNoLoginAuthState
+        })
+        // there is no 'logout' page.  so home again.
+        this.setState('home', true)
+      }
   }
 }

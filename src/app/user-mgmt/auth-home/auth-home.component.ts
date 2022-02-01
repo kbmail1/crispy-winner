@@ -1,5 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-
+import AuthService, { defaultNoLoginAuthState } from 'src/app/services/auth.service';
 @Component({
   selector: 'app-auth-home',
   templateUrl: './auth-home.component.html',
@@ -7,24 +7,34 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 })
 export class AuthHomeComponent implements OnInit {
 
+  isAuthenticated = false;
   @Output() actionEmitter = new EventEmitter<string>()
-  action: string = '' // stay here.
 
-  constructor() {
-    this.action = ''
-  }
+  constructor(
+    private authService: AuthService
+  ) { }
 
   ngOnInit(): void {
+    let authState = this.authService.getAuthState()
+    this.isAuthenticated = authState.isAuthenticated;
   }
 
+  getLatestAuth() {
+    return this.authService.getAuthState().isAuthenticated
+  }
   handleSignupClick(e: Event) {
     console.log('handleSignupClick: emitting: signup event')
-    this.action = 'signup'
-    this.actionEmitter.emit(this.action)
+    this.actionEmitter.emit('signup')
   }
 
   handleLoginClick(e: Event) {
-    this.action = 'login'
-    this.actionEmitter.emit(this.action)
+    this.actionEmitter.emit('login')
+  }
+
+  handleLogoutClick(e: Event) {
+    this.authService.setAuthState({
+      ...defaultNoLoginAuthState, ...{ isAuthenticated: false}
+    })
+    this.actionEmitter.emit('logout')
   }
 }

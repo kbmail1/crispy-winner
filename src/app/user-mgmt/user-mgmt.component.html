@@ -9,10 +9,12 @@
 
 <app-signup *ngIf="this.state.signup"
   (signupEmitter)="handleSignupStatus($event)"
+  (actionEmitter)="handleActionRequest($event)"
 ></app-signup>
 
 <app-login *ngIf="this.state.login"
   (loginEmitter)="handleLoginStatus($event)"
+  (actionEmitter)="handleActionRequest($event)"
 ></app-login>
 
 <app-auth-home *ngIf="this.state.home"

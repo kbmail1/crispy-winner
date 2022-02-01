@@ -1,5 +1,6 @@
 hello I am auth-home.html
 
+<ng-container *ngIf="!this.getLatestAuth(); else showLogout">
 <button
   id="login-action"
   name="login-action"
@@ -8,6 +9,18 @@ hello I am auth-home.html
 >
   Login
 </button>
+</ng-container>
+
+<ng-template #showLogout>
+<button
+  id="logout-action"
+  name="logout-action"
+  type="submit"
+  (click)="handleLogoutClick($event)"
+>
+  Logout - this.authenticated: {{ this.isAuthenticated }}
+</button>
+</ng-template>
 
 <button
   id="signup-action"
