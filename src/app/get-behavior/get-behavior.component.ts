@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { BehaviorService } from '../services/behavior.service';
+import { LoginBehaviorService } from '../services/login-behavior.service';
 
 @Component({
   selector: 'app-get-behavior',
@@ -13,7 +13,7 @@ export class GetBehaviorComponent implements OnInit, OnDestroy {
   bobservable$: Observable<string> | null = null
 
   constructor(
-    private bservice: BehaviorService
+    private bservice: LoginBehaviorService
   ) { }
 
   ngOnInit() {

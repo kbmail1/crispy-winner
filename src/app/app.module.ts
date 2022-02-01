@@ -10,8 +10,6 @@ import { DictionaryComponent } from './dictionary/dictionary.component';
 import { HangmanComponent } from './hangman/hangman.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { LandingComponent } from './landing/landing.component';
-import { ActivatedRouteComponent } from './activated-route/activated-route.component';
-import { LoginComponent } from './login/login.component';
 import { HttpClientModule } from '@angular/common/http';
 
 import AuthService from './services/auth.service';
@@ -27,7 +25,11 @@ import { RestComponent } from './rest/rest.component';
 import { SendBehaviorComponent } from './send-behavior/send-behavior.component';
 import { GetBehaviorComponent } from './get-behavior/get-behavior.component';
 import { BehaviorComponent } from './behavior/behavior.component';
-import { ChatComponent } from './chat/chat.component';
+import { UserMgmtComponent } from './user-mgmt/user-mgmt.component';
+import { SignupComponent } from './user-mgmt/signup/signup.component';
+import { LoginComponent } from './user-mgmt/login/login.component';
+import { httpInterceptorProviders } from './http-interceptors';
+import { AuthHomeComponent } from './user-mgmt/auth-home/auth-home.component';
 
 @NgModule({
   declarations: [
@@ -38,8 +40,6 @@ import { ChatComponent } from './chat/chat.component';
     HangmanComponent,
     PageNotFoundComponent,
     LandingComponent,
-    ActivatedRouteComponent,
-    LoginComponent,
     OutputChildComponent,
     OutputParentComponent,
     InputParentComponent,
@@ -52,7 +52,10 @@ import { ChatComponent } from './chat/chat.component';
     SendBehaviorComponent,
     GetBehaviorComponent,
     BehaviorComponent,
-    ChatComponent,
+    UserMgmtComponent,
+    SignupComponent,
+    LoginComponent,
+    AuthHomeComponent,
   ],
   imports: [
     BrowserModule,
@@ -60,7 +63,10 @@ import { ChatComponent } from './chat/chat.component';
     FormsModule,
     HttpClientModule,
   ],
-  providers: [AuthService],
+  providers: [
+    AuthService,
+    httpInterceptorProviders,
+  ],
   bootstrap: [AppComponent],
   schemas: [
     NO_ERRORS_SCHEMA,

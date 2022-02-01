@@ -1,47 +1,28 @@
-import { AfterContentInit, Component, ElementRef, OnInit, AfterContentChecked, ViewChild } from '@angular/core';
-import AuthService from '../services/auth.service'
-import axios from 'axios'
+import { AfterContentInit, Component, OnInit, } from '@angular/core';
 
 @Component({
   selector: 'app-chat',
   templateUrl: './chat.component.html',
   styleUrls: ['./chat.component.scss']
 })
-export class ChatComponent implements OnInit, AfterContentInit {
-
-  @ViewChild('signupCode') signupCode!: ElementRef<HTMLInputElement>;
-
-  // put this in a state object so false/true settings are correct */
-  showSignupForm: boolean = false
-  showLoginForm: boolean = false
-  showEnterCodeForm: boolean = false
-  accountCreated: boolean = false
-
-  static MaxSignupAttempts = 3
-  errorMsg = ''
-  signupAttempts = 0
-  loggedIn = false
-  password: string = ''
-  email: string = ''
-  code: string = ''
+export class ChatComponent implements OnInit {
+  showSignup: boolean = false
+  showLogin: boolean = false
+  showHome: boolean = true
 
   constructor(
-    private authService: AuthService,
   ) {
-    this.showSignupForm = false
-    this.showLoginForm = false
-    this.showEnterCodeForm = false
-    this.accountCreated = false
-    this.loggedIn = false
+    this.showSignup = false: w
+
+    this.showLogin = false
+    this.showHome = true: w
 
   }
 
   ngOnInit(): void {
   }
+  :console.warn();
 
-  ngAfterContentInit() {
-    this.errorMsg = ''
-  }
 
   doShowNoForm(): boolean {
     return (

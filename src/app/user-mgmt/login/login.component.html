@@ -1,0 +1,18 @@
+<div style="font-size: 0.8rem">
+  email: {{ this.email }}<br>
+  password: {{ this.password }}
+</div>
+
+<div>
+  <label for="email">Email</label>
+  <input id="email" name="email" [(ngModel)]="email" type="email">
+
+  <label for="password">Password</label>
+  <input id="password" name="password" [(ngModel)]="password" type="password">
+
+  <button id='submit-login-form' (click)="handleLogin($event)" class="btn btn-secondary btn-block"
+  >
+    Login
+  </button>
+
+</div>

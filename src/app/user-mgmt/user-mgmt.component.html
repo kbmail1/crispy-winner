@@ -1,0 +1,20 @@
+<div style="font-size:0.8rem">
+  state: {{ state | json }} <br>
+</div>
+<p></p>
+<div id="error-msg" *ngIf="msgToDisplay != ''">
+  {{ msgToDisplay }}
+</div>
+<p></p>
+
+<app-signup *ngIf="this.state.signup"
+  (signupEmitter)="handleSignupStatus($event)"
+></app-signup>
+
+<app-login *ngIf="this.state.login"
+  (loginEmitter)="handleLoginStatus($event)"
+></app-login>
+
+<app-auth-home *ngIf="this.state.home"
+  (actionEmitter)="handleActionRequest($event)"
+></app-auth-home>

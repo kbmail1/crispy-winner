@@ -1,0 +1,55 @@
+<div style="font-size: 0.5rem">
+  email: {{this.email}}<br>
+  sessionStoredEmail: {{ this.getSession() }}<br>
+</div>
+
+<!-- Signup Form -->
+<div *ngIf="getEmail">
+  <label for="submit-email">
+    Email
+  </label>
+  <input
+    id="signup-email"
+    [(ngModel)]="email"
+    type="email"
+    placeholder="a@b.com"
+  ><br>
+
+  <label for="submit-password">
+    Password
+  </label>
+  <input
+    id="signup-password"
+    name="signup-password"
+    type="password"
+    placeholder="xxx"
+  >
+  <button
+    id='submit-signup-form'
+    class='btn btn-primary'
+    (click)="handleRequestedCreds()"
+  >
+    Sign up
+  </button>
+</div>
+
+<!-- Enter code Form -->
+<div *ngIf="getCode">
+  <label for="submit-code">
+    Enter code emailed to {{this.email}}
+  </label>
+  <input
+    #signupCcode
+    id="signup-code"
+    type="text"
+    placeholder='XXXX'
+  >
+  <button
+    id='submit-code'
+    name="submit-code"
+    (click)="handleCode()"
+    class='btn btn-primary'
+  >
+   validate Code
+  </button>
+</div>

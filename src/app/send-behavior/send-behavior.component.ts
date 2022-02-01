@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { BehaviorService } from '../services/behavior.service';
+import { LoginBehaviorService } from '../services/login-behavior.service';
 
 @Component({
   selector: 'app-send-behavior',
@@ -10,7 +10,7 @@ import { BehaviorService } from '../services/behavior.service';
 export class SendBehaviorComponent implements OnInit {
 
   constructor(
-    private bservice: BehaviorService
+    private bservice: LoginBehaviorService
   ) { }
 
   count: number = 1
