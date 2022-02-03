@@ -30,6 +30,8 @@ import { SignupComponent } from './user-mgmt/signup/signup.component';
 import { LoginComponent } from './user-mgmt/login/login.component';
 import { httpInterceptorProviders } from './http-interceptors';
 import { AuthHomeComponent } from './user-mgmt/auth-home/auth-home.component';
+import { StrikethroughDirective } from './strikethrough.directive';
+import { DictFilterPipe } from './dict-filter.pipe';
 
 @NgModule({
   declarations: [
@@ -56,6 +58,8 @@ import { AuthHomeComponent } from './user-mgmt/auth-home/auth-home.component';
     SignupComponent,
     LoginComponent,
     AuthHomeComponent,
+    StrikethroughDirective,
+    DictFilterPipe,
   ],
   imports: [
     BrowserModule,

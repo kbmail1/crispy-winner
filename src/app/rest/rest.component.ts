@@ -39,9 +39,12 @@ export class RestComponent implements OnInit {
   onClickPromise = async () => {
     console.log('Promises: onlick 1')
     let obs$ = await this.http.get(this.url)
-    console.log('Promises: onlick 2')
+    console.log(`Promises: onlick 2 - this can be dangerous if we do NOT know 
+    that observable is 'resolvable'. If so, promise will just hang in async state...`)
     let prom = await lastValueFrom(obs$)
+
+    console.log('prom type: ', typeof prom)
     console.log('Promises: onlick 3')
-    console.log('Type of Prom: ', JSON.stringify(prom))
+    // console.log('Type of Prom: ', JSON.stringify(prom))
   }
 }
